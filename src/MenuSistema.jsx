@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
+import { logout } from './views/util/AuthenticationService';
 
 class MenuSistema extends React.Component{
 
@@ -9,6 +10,11 @@ class MenuSistema extends React.Component{
    }
 
    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+   logout = () => {
+        logout()
+    }
+
 
    render(){
        return(
@@ -20,7 +26,7 @@ class MenuSistema extends React.Component{
                        active={this.state.activeItem === 'home'}
                        onClick={this.handleItemClick}
                        as={Link}
-                       to='/'
+                       to='/home'
                    />
                   
                    <Menu.Item
@@ -54,6 +60,15 @@ class MenuSistema extends React.Component{
                        as={Link}
                        to='/list-fornecedor'
                    />
+
+                <Menu.Item
+                    className='navbar__item--mobile'
+                    onClick={this.logout}
+                    content='Sair'
+                    as={Link}
+                    to='/'
+                />
+
 
                </Menu>
            </>
